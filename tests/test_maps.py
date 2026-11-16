@@ -1,4 +1,4 @@
-from src.maps import directions_url, map_embed_url, map_search_url, place_query
+from civamapdraft.maps import directions_url, map_embed_url, map_search_url, place_query
 
 
 def test_statewide_has_no_destination():

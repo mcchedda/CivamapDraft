@@ -8,7 +8,7 @@ from pathlib import Path
 from fastembed import TextEmbedding
 from qdrant_client import QdrantClient, models
 
-from src.retrieval import search_resources
+from civamapdraft.retrieval import search_resources
 
 COLLECTION = "civamap_resources_v1"
 EMBEDDING_MODEL = "BAAI/bge-small-en-v1.5"
@@ -17,12 +17,17 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 def get_client() -> QdrantClient:
-    url = os.getenv("QDRANT_URL", "").strip()
-    if url:
-        return QdrantClient(url=url, api_key=os.getenv("QDRANT_API_KEY") or None, timeout=60)
-    local_path = ROOT / ".qdrant"
-    local_path.mkdir(parents=True, exist_ok=True)
-    return QdrantClient(path=str(local_path))
+    try:
+        client = QdrantClient(
+            url=os.getenv("QDRANT_URL"), api_key=os.getenv("QDRANT_API_KEY"), port=443
+        )
+    except Exception as e:
+        print(
+            f"[ERROR] Unable to initialize client using url: '{os.getenv('QDRANT_URL')}'. "
+            f"API key present in .env file? {'YES' if os.getenv('QDRANT_API_KEY') else 'NO'}."
+            f"\nFull error: {e}"
+        )
+    return client
 
 
 def get_embedder() -> TextEmbedding:
