@@ -7,21 +7,18 @@ may be outdated or incomplete. Confirm eligibility and availability with provide
 ## Quickstart (Mac)
 
 ```bash
-cd ~/Documents/civamap
-python3 -m venv .venv
-source .venv/bin/activate
-python -m pip install -r requirements.txt
+uv python pin 3.14
+uv sync
+
 cp .env.example .env
 ```
 
 Edit `.env` with the **exact** Qwen API base URL, model ID, and (if needed) key provided by Colby.
-`QWEN_MODEL=qwen-3.8-27b` is a provisional name from the original email, **not a verified API model ID**.
-`QWEN_BASE_URL` normally ends in `/v1`, but use whatever format Colby confirms.
-If your gateway doesn't require auth, you may leave `QWEN_API_KEY` blank.
-Then:
+
+Then to run the prototype:
 
 ```bash
-streamlit run app.py
+uv run streamlit run app.py
 ```
 
 Open http://localhost:8501 and ask questions. First startup downloads the FastEmbed model
@@ -62,7 +59,7 @@ pretending that a keyword result is a model answer when Qwen is not configured.
 ## Tests
 
 ```bash
-python -m pytest tests -q
+uv run pytest tests
 ```
 
 ## Colby-blue UI and Maps
