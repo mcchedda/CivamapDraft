@@ -9,10 +9,10 @@ import pandas as pd
 import streamlit as st
 from dotenv import load_dotenv
 
-from src.database import get_client, get_embedder, ensure_index, search_qdrant
-from src.llm import answer, is_configured
-from src.maps import directions_url, map_embed_url, map_search_url
-from src.retrieval import load_resources
+from civamapdraft.database import get_client, get_embedder, ensure_index, search_qdrant
+from civamapdraft.llm import answer, is_configured
+from civamapdraft.maps import directions_url, map_embed_url, map_search_url
+from civamapdraft.retrieval import load_resources
 
 ROOT = Path(__file__).resolve().parent
 load_dotenv(ROOT / ".env")

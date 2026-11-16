@@ -1,5 +1,5 @@
-from src.llm import build_context, is_configured
-from src.database import as_document, digest_resources
+from civamapdraft.llm import build_context, is_configured
+from civamapdraft.database import as_document, digest_resources
 
 
 def test_source_context():

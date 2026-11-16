@@ -1,4 +1,4 @@
-from src.retrieval import tokens, search_resources
+from civamapdraft.retrieval import tokens, search_resources
 
 
 def test_tokens_drop_common_words():
